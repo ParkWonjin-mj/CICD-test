@@ -8,6 +8,8 @@ import { aws_iam as iam } from 'aws-cdk-lib';
 export interface VpcProps {
   vpcCidr: string;
   vpcMaxAzs: number;
+  enableDnsHostnames?: boolean;
+  enableDnsSupport?: boolean;
 }
 
 export class Vpc extends Construct {
@@ -21,6 +23,7 @@ export class Vpc extends Construct {
       maxAzs: props.vpcMaxAzs,
       natGateways: 2,
       flowLogs: {},
+
       subnetConfiguration: [
         {
           cidrMask: 24,

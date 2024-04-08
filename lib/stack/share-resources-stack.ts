@@ -60,9 +60,12 @@ export class ShareResourcesStack extends cdk.Stack {
     this.appKey = appKey.kmsKey;
 
     // Networking
+    // why use customer-definetion Option Vpc
     const vpc = new Vpc(this, `${props.pjPrefix}-Vpc`, {
       vpcCidr: props.vpcCidr,
       vpcMaxAzs: props.vpcMaxAzs,
+      enableDnsHostnames: true,
+      enableDnsSupport: true,
     });
 
     this.vpc = vpc.vpc;
